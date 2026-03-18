@@ -106,7 +106,7 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
     window.addEventListener("resize", handleResize)
     animate()
 
-    sceneRef.current = { scene, camera, renderer, animationId }
+    sceneRef.current = { scene, camera, renderer, animationId: animationId! }
 
     return () => {
       window.removeEventListener("resize", handleResize)
