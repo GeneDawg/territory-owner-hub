@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 
@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   title: "Peak 301 Territory Owner Hub",
   description:
     "Your complete flywheel of supporting software — from territory setup to profitable exit.",
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({

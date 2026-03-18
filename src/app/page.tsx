@@ -8,19 +8,19 @@ export default function Home() {
     <main className="min-h-screen bg-black">
       <HeroSection />
 
-      <section id="flywheel" className="py-20 px-4 md:px-8 relative overflow-hidden">
+      <section id="flywheel" className="py-12 sm:py-20 px-3 sm:px-4 md:px-8 relative overflow-hidden">
         <DottedSurface />
         <div className="relative z-10">
           <Flywheel />
         </div>
       </section>
 
-      <section id="companies" className="py-20 px-4 md:px-8 border-t border-white/[0.04]">
+      <section id="companies" className="py-12 sm:py-20 px-3 sm:px-4 md:px-8 border-t border-white/[0.04]">
         <CompanyDetails />
       </section>
 
-      <footer className="py-12 px-4 text-center border-t border-white/[0.04]">
-        <p className="text-sm text-neutral-500">
+      <footer className="py-8 sm:py-12 px-4 text-center border-t border-white/[0.04]">
+        <p className="text-xs sm:text-sm text-neutral-500">
           Peak 301 Territory Owner Hub &mdash; Powering contractor growth nationwide.
         </p>
       </footer>

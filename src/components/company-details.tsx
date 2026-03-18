@@ -14,10 +14,10 @@ export function CompanyDetails() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
           Our Partners
         </h2>
-        <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
+        <p className="text-neutral-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-2">
           Every tool in the ecosystem, designed to work together and accelerate
           your growth.
         </p>
@@ -32,7 +32,7 @@ export function CompanyDetails() {
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
             whileHover={{ y: -6 }}
-            className="group rounded-2xl border border-white/[0.06] bg-neutral-950 p-6 transition-colors hover:border-white/[0.12]"
+            className="group rounded-2xl border border-white/[0.06] bg-neutral-950 p-4 sm:p-6 transition-colors hover:border-white/[0.12]"
           >
             <div
               className="w-14 h-14 rounded-xl flex items-center justify-center bg-neutral-900 border mb-5 overflow-hidden"

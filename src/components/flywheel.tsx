@@ -28,13 +28,20 @@ function FlywheelNode({
   const y = radius * Math.sin(angle)
 
   return (
-    <motion.button
-      className="absolute flex flex-col items-center gap-1 group"
+    <motion.a
+      href={company.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="absolute flex flex-col items-center gap-0.5 sm:gap-1 group"
       style={{
-        left: `calc(50% + ${x}px - 36px)`,
-        top: `calc(50% + ${y}px - 36px)`,
+        left: `calc(50% + ${x}px - 28px)`,
+        top: `calc(50% + ${y}px - 28px)`,
       }}
-      onClick={onClick}
+      onClick={(e) => {
+        e.preventDefault()
+        onClick()
+        window.open(company.url, "_blank", "noopener,noreferrer")
+      }}
       animate={{
         scale: isActive ? 1.2 : 1,
       }}
@@ -42,7 +49,7 @@ function FlywheelNode({
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <div
-        className="w-[72px] h-[72px] rounded-full flex items-center justify-center bg-neutral-900 border-2 transition-all duration-300 overflow-hidden"
+        className="w-[48px] h-[48px] sm:w-[64px] sm:h-[64px] md:w-[72px] md:h-[72px] rounded-full flex items-center justify-center bg-neutral-900 border-2 transition-all duration-300 overflow-hidden"
         style={{
           borderColor: isActive ? company.color : "rgba(255,255,255,0.1)",
           boxShadow: isActive
@@ -55,16 +62,16 @@ function FlywheelNode({
           alt={company.name}
           width={48}
           height={48}
-          className="object-contain p-1"
+          className="object-contain p-0.5 sm:p-1"
         />
       </div>
       <span
-        className="text-[10px] font-medium text-center whitespace-nowrap transition-colors duration-300 max-w-[80px] truncate"
+        className="text-[8px] sm:text-[10px] font-medium text-center whitespace-nowrap transition-colors duration-300 max-w-[60px] sm:max-w-[80px] truncate"
         style={{ color: isActive ? company.color : "rgba(255,255,255,0.5)" }}
       >
         {company.name}
       </span>
-    </motion.button>
+    </motion.a>
   )
 }
 
@@ -116,12 +123,12 @@ function CompanyDetailPanel({ company }: { company: Company }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      className="rounded-2xl border bg-neutral-950 p-8"
+      className="rounded-2xl border bg-neutral-950 p-5 sm:p-8"
       style={{ borderColor: `${company.color}30` }}
     >
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div
-          className="w-16 h-16 rounded-xl flex items-center justify-center bg-neutral-900 border overflow-hidden"
+          className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center bg-neutral-900 border overflow-hidden flex-shrink-0"
           style={{ borderColor: `${company.color}40` }}
         >
           <Image
@@ -133,7 +140,7 @@ function CompanyDetailPanel({ company }: { company: Company }) {
           />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-white">{company.name}</h3>
+          <h3 className="text-lg sm:text-xl font-bold text-white">{company.name}</h3>
           <span
             className="text-sm font-medium"
             style={{ color: company.color }}
@@ -168,7 +175,8 @@ export function Flywheel() {
 
   useEffect(() => {
     const updateRadius = () => {
-      setRadius(window.innerWidth < 640 ? 130 : window.innerWidth < 1024 ? 170 : 200)
+      const w = window.innerWidth
+      setRadius(w < 400 ? 100 : w < 640 ? 120 : w < 1024 ? 170 : 200)
     }
     updateRadius()
     window.addEventListener("resize", updateRadius)
@@ -199,22 +207,22 @@ export function Flywheel() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
           The Peak 301 Flywheel
         </h2>
-        <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
+        <p className="text-neutral-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-2">
           Eight interconnected solutions that create a self-reinforcing cycle of
           growth — from territory setup to profitable exit.
         </p>
       </motion.div>
 
-      <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16">
         {/* Flywheel */}
         <div
-          className="relative flex-shrink-0"
+          className="relative flex-shrink-0 mx-auto max-w-full"
           style={{
-            width: radius * 2 + 160,
-            height: radius * 2 + 160,
+            width: radius * 2 + 120,
+            height: radius * 2 + 120,
           }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -223,10 +231,10 @@ export function Flywheel() {
           <div
             className="absolute rounded-full"
             style={{
-              left: 38,
-              top: 38,
-              right: 38,
-              bottom: 38,
+              left: 18,
+              top: 18,
+              right: 18,
+              bottom: 18,
               border: `1px solid ${NEON}15`,
               boxShadow: `0 0 40px ${NEON}08, inset 0 0 40px ${NEON}05`,
             }}
@@ -236,10 +244,10 @@ export function Flywheel() {
           <div
             className="absolute rounded-full"
             style={{
-              left: 40,
-              top: 40,
-              right: 40,
-              bottom: 40,
+              left: 20,
+              top: 20,
+              right: 20,
+              bottom: 20,
               border: `1px solid ${NEON}20`,
             }}
           />
@@ -248,10 +256,10 @@ export function Flywheel() {
           <div
             className="absolute rounded-full animate-[spin_30s_linear_infinite]"
             style={{
-              left: 55,
-              top: 55,
-              right: 55,
-              bottom: 55,
+              left: 35,
+              top: 35,
+              right: 35,
+              bottom: 35,
               border: `1px dashed ${NEON}18`,
             }}
           />
@@ -260,8 +268,8 @@ export function Flywheel() {
           <div
             className="absolute"
             style={{
-              left: 80,
-              top: 80,
+              left: 60,
+              top: 60,
               width: radius * 2,
               height: radius * 2,
             }}
@@ -276,7 +284,7 @@ export function Flywheel() {
           {/* Center hub */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div
-              className="w-24 h-24 rounded-full flex items-center justify-center border-2 transition-all duration-500"
+              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center border-2 transition-all duration-500"
               style={{
                 borderColor: `${NEON}50`,
                 boxShadow: `0 0 30px ${NEON}20, 0 0 60px ${NEON}10, inset 0 0 20px ${NEON}08`,
@@ -301,8 +309,8 @@ export function Flywheel() {
           <div
             className="absolute"
             style={{
-              left: 80,
-              top: 80,
+              left: 60,
+              top: 60,
               width: radius * 2,
               height: radius * 2,
             }}
